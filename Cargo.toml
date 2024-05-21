@@ -1,0 +1,46 @@
+[package]
+
+name = "nexedit"
+version = "0.2.0"
+author = "d3vboi"
+description = "A vim-like text editor."
+# repository = "https://github.com/d3vboi/nexedit" # To be created
+keywords = ["text", "editor", "terminal"]
+edition="2021"
+
+[build-dependencies]
+regex = "1.10"
+
+[dependencies]
+app_dirs2 = "2.5"
+scribe = "0.8"
+bloodhound = "0.5"
+luthor = "0.2"
+fragment = "0.3"
+regex = "1.10"
+libc = "0.2"
+syntect = "5.1"
+termion = "2.0"
+error-chain = "0.12"
+unicode-segmentation = "1.10"
+cli-clipboard = "0.4"
+yaml-rust = "0.4"
+smallvec = "1.11"
+lazy_static = "1.4"
+mio = "0.6"
+
+[dependencies.signal-hook]
+version = "0.1"
+features = ["mio-support"]
+
+[dependencies.git2]
+version = "0.18"
+default-features = false
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "draw_buffer"
+path = "benches/view/draw_buffer.rs"
+harness = false
