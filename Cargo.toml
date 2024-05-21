@@ -2,7 +2,7 @@
 
 name = "nexedit"
 version = "0.2.1"
-authors = "d3vboi"
+authors = ["d3vboi"]
 description = "A vim-like text editor, with simple shortcuts."
 repository = "https://github.com/d3vboi/nexedit"
 license = "MIT"
