@@ -1,10 +1,10 @@
 [package]
 
 name = "nexedit"
-version = "0.2.0"
+version = "0.2.1"
 author = "d3vboi"
-description = "A vim-like text editor."
-# repository = "https://github.com/d3vboi/nexedit" # To be created
+description = "A vim-like text editor, with simple shortcuts."
+epository = "https://github.com/d3vboi/nexedit"
 keywords = ["text", "editor", "terminal"]
 edition="2021"
 
