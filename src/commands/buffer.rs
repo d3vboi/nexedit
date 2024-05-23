@@ -96,6 +96,23 @@ pub fn delete_token(app: &mut Application) -> Result {
     Ok(())
 }
 
+pub fn delete_current_token(app: &mut Application) -> Result {
+    if let Some(buffer) = app.workspace.current_buffer.as_mut() {
+        let cursor_position = buffer.cursor.position;
+        let token_start = adjacent_token_position(buffer, true, Direction::Backward).unwrap_or(cursor_position);
+        let token_end = adjacent_token_position(buffer, true, Direction::Forward).unwrap_or(cursor_position);
+
+        buffer.delete_range(Range::new(token_start, token_end));
+        buffer.cursor.position = token_start;
+        commands::view::scroll_to_cursor(app)?;
+    } else {
+        bail!(BUFFER_MISSING);
+    }
+
+    Ok(())
+}
+
+
 pub fn delete_current_line(app: &mut Application) -> Result {
     commands::application::switch_to_select_line_mode(app)?;
     commands::selection::copy_and_delete(app)?;

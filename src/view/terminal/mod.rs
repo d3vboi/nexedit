@@ -26,6 +26,7 @@ const MIN_HEIGHT: usize = 10;
 
 pub trait Terminal {
     fn listen(&self) -> Option<Event>;
+    #[allow(dead_code)]
     fn clear(&self);
     fn present(&self);
     fn width(&self) -> usize;

@@ -1,14 +1,14 @@
 [package]
 
 name = "nexedit"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["d3vboi"]
 description = "A vim-like text editor, with simple shortcuts."
 repository = "https://github.com/d3vboi/nexedit"
 license-file = "LICENSE"
 readme = "README.md"
 keywords = ["text", "editor", "terminal"]
-categories = ["command-line-utilities", "text-editors", "", "", ""]
+categories = ["command-line-utilities", "text-editors"]
 edition="2021"
 
 [build-dependencies]

@@ -4,6 +4,7 @@ use crate::view::{Colors, CursorType, StatusLineData, Style, View};
 use scribe::buffer::Position;
 use scribe::Workspace;
 use unicode_segmentation::UnicodeSegmentation;
+use std::fmt::Write;
 
 pub fn display(workspace: &mut Workspace, mode: &SearchMode, view: &mut View) -> Result<()> {
     let mut presenter = view.build_presenter()?;
@@ -18,23 +19,22 @@ pub fn display(workspace: &mut Workspace, mode: &SearchMode, view: &mut View) ->
         None,
     )?;
 
-    let mode_display = format!(" {} ", mode);
-    let search_input = format!(" {}", mode.input.as_ref().unwrap_or(&String::new()));
-    let result_display = if mode.insert {
-        String::new()
-    } else if let Some(ref results) = mode.results {
-        if results.len() == 1 {
-            String::from("1 match")
-        } else {
-            format!(
-                "{} of {} matches",
-                results.selected_index() + 1,
-                results.len()
-            )
+    let mut mode_display = String::with_capacity(10);
+    write!(mode_display, " {} ", mode).unwrap();
+
+    let mut search_input = String::with_capacity(mode.input.as_ref().unwrap_or(&String::new()).len() + 2);
+    write!(search_input, " {}", mode.input.as_ref().unwrap_or(&String::new())).unwrap();
+
+    let mut result_display = String::new();
+    if !mode.insert {
+        if let Some(ref results) = mode.results {
+            if results.len() == 1 {
+                result_display.push_str("1 match");
+            } else {
+                write!(result_display, "{} of {} matches", results.selected_index() + 1, results.len()).unwrap();
+            }
         }
-    } else {
-        String::new()
-    };
+    }
 
     let cursor_offset = mode_display.graphemes(true).count() + search_input.graphemes(true).count();
 

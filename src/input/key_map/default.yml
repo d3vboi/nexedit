@@ -95,6 +95,7 @@ insert:
   page_down: view::scroll_down
   escape: application::switch_to_normal_mode
   delete: buffer::delete
+  ctrl-b: buffer::delete_current_token
   ctrl-a: selection::select_all
   ctrl-z: application::suspend
   ctrl-c: application::exit
